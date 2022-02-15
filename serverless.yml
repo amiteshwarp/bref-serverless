@@ -1,0 +1,20 @@
+service: ri-quote
+provider:
+  name: aws
+  region: us-east-1
+  runtime: provided.al2
+plugins:
+  - ./vendor/bref/bref
+functions:
+  users:
+    handler: App\Handler\UserHandler
+    events:
+      - httpApi: 'GET /users'
+  products:
+    handler: App\Handler\ProductHandler
+    events:
+      - httpApi: 'GET /products'
+package:
+  patterns:
+    - '!node_modules/**'
+    - '!tests/**'

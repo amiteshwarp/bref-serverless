@@ -1,0 +1,7 @@
+/.idea
+/.env
+/*.code-workspace
+/.history
+/.vscode
+/.phpunit.result.cache
+/vendor

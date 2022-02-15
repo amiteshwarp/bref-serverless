@@ -1,0 +1,42 @@
+#!/usr/bin/env php
+<?php declare(strict_types=1);
+/**
+  It's a copy of file from vendor/bref/dev-server/bin/bref-dev-server
+  That supports only static IP 127.0.0.1
+*/
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use Bref\DevServer\Handler;
+use Silly\Application;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Process\Process;
+
+$app = new Application('Bref dev server');
+
+$app->command('run [-a|--assets=] [-g|--ghost=] [-p|--port=]', function (OutputInterface $output, ?string $assets = null, ?string $ghost = null, ?string $port = null) {
+    $handler = __DIR__ . '/../vendor/bref/dev-server/src/server-handler.php';
+    $assetsDirectory = $assets ?: getcwd();
+    $pHost = $ghost ?: '127.0.0.1';
+    $pPort = $port ?: '8000';
+    $output->writeln("<info>Serving PHP from serverless.yml routes</info>");
+    $output->writeln("<info>Serving assets from $assetsDirectory/</info>");
+
+    $server = new Process(['php', '-S', $pHost . ':' . $pPort, '-t', $assetsDirectory, $handler]);
+    $server->setTimeout(null);
+    $server->setTty(true);
+    $server->setEnv([
+        'PHP_CLI_SERVER_WORKERS' => 2,
+        Handler::ASSETS_DIRECTORY_VARIABLE => $assetsDirectory,
+    ]);
+
+    $server->run();
+
+    exit($server->getExitCode());
+})->descriptions('Run the development server', [
+    '--assets' => 'The directory where static assets can be found. By default it is the current directory.',
+    '--ghost' => 'The host where to access the API end point supports 0.0.0.0 for any IP running on machine.',
+    '--port' => 'The port where to access the API end point, default is 8000.',
+]);
+
+$app->setDefaultCommand('run');
+$app->run();
