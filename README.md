@@ -30,7 +30,7 @@ curl -o- -L https://slss.io/install | bash
 
 [**AWS Document**](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html) for complete installation and execution
 
-- Access the URL on postman
+## Access the URL on postman
 # POST
 ```bash
 http://172.28.128.14:3000/quote/date
