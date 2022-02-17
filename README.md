@@ -26,8 +26,18 @@ curl -o- -L https://slss.io/install | bash
 ./sandbox/bref-dev-server -g172.28.128.14 -p3000
 ```
 
+- Install DynamoDB locally
+
+[**AWS Document**](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html) for complete installation and execution
+
 - Access the URL on postman
+# POST
 ```bash
-http://172.28.128.14:3000/products
-http://172.28.128.14:3000/users
+http://172.28.128.14:3000/quote/date
+http://172.28.128.14:3000/quote/time
+http://172.28.128.14:3000/quote/all
+```
+# GET
+```bash
+http://172.28.128.14:3000/quote/search
 ```
