@@ -8,7 +8,8 @@ A sample application to use slim framework with bref/serverless as microservice
 ## Local Development Steps to follow
 
 - PHP: Make sure your system supports PHP>=8.0
-Laravel Homestead have built all releases in PHP 8.1 - 7.0
+
+[**Laravel Homestead**](https://laravel.com/docs/9.x/homestead#installation-and-setup) have built all releases in PHP 8.1 - 7.0
 
 - Install the dependecies
 ```bash
