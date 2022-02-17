@@ -3,17 +3,23 @@ provider:
   name: aws
   region: us-east-1
   runtime: provided.al2
+  memorySize: 128
+  stage: development
 plugins:
   - ./vendor/bref/bref
 functions:
-  users:
-    handler: App\Handler\UserHandler
+  movie-get:
+    handler: Entrata\ResidentInsureQuote\Handlers\QuoteHandler
     events:
-      - httpApi: 'GET /users'
-  products:
-    handler: App\Handler\ProductHandler
+      - httpApi: GET /quote/{data}/{year}
+  quote-get:
+    handler: Entrata\ResidentInsureQuote\Handlers\QuoteHandler
     events:
-      - httpApi: 'GET /products'
+      - httpApi: GET /quote/{data}
+  quote-post:
+    handler: Entrata\ResidentInsureQuote\Handlers\QuoteHandler
+    events:
+      - httpApi: POST /quote/{data}
 package:
   patterns:
     - '!node_modules/**'

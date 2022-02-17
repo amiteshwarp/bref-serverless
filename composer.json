@@ -3,23 +3,24 @@
   "description": "ResidentInsure Quote Microservices",
   "type": "library",
   "license": "proprietary",
-  "minimum-stability": "stable",
+  "minimum-stability": "dev",
   "require": {
     "php": ">=8.0",
     "bref/bref": "^1.4",
+    "aws/aws-sdk-php": "^3.208",
     "monolog/monolog": "^2.3",
     "php-di/php-di": "^6.3",
-    "slim/slim": "^4.1",
-    "slim/psr7": "^1.5"
+    "nyholm/psr7": "^1.5"
   },
   "autoload": {
-		"psr-4": {
-			"App\\": "src/"
-		},
+    "psr-4": {
+      "Entrata\\ResidentInsureQuote\\Handlers\\": "Handlers",
+      "Entrata\\ResidentInsureQuote\\Quotes\\": "Quotes"
+    },
     "files": [
-        "bootstrap.php"
+      "bootstrap.php"
     ]
-	},
+  },
   "scripts": {
     "test": "phpunit"
   },

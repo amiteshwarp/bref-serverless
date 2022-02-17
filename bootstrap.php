@@ -5,11 +5,10 @@ use DI\ContainerBuilder;
 
 Bref::setContainer(function () {
     // Create and build the container
-    $containerBuilder = new ContainerBuilder;
-    $containerBuilder->addDefinitions(
-        [
-            'debug' => true
-        ]
-    );
-    return $containerBuilder->build();
+    return ( new ContainerBuilder() )
+        ->addDefinitions(
+            [
+                'debug' => true
+            ]
+    )->build();
 });
